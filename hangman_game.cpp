@@ -53,13 +53,17 @@ int main()
     vector<char> vphrase;
     vector<char> guessing_phrase;
 
+    Hangman hangman;
+
+    hangman.buildMan();
+
     // Create vector from entered phrase
     for (int i = 0; i < size; i++)
     {
         vphrase.push_back(phrase[i]);
     }
 
-    // Create parellel vector with unknown letters
+    // Create parallel vector with unknown letters
     for (int i = 0; i < size; i++)
     {
         if (vphrase[i] != ' ')
@@ -130,5 +134,6 @@ int main()
         }
         cout << endl;
     }
+
     return 0;
 }
