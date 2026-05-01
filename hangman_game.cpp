@@ -54,6 +54,8 @@ int main()
 
     Hangman hangman;
 
+    hangman.buildMan();
+
     // Create vector from entered phrase
     for (int i = 0; i < size; i++)
     {
@@ -141,5 +143,6 @@ int main()
         }
         cout << endl;
     }
+
     return 0;
 }

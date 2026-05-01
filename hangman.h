@@ -25,14 +25,14 @@ class Hangman
         Hangman& operator=(const Hangman&h);
         ~Hangman();
 
-        void addPart(char part);
+        void buildMan();
         void printHangman();
 
         int num_parts;
+        int guesses;
     
     private:
         Node *head;
-        Node *tail;
 };
 
 #endif

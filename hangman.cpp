@@ -29,23 +29,14 @@ Node& Node::operator=(const Node& n)
 Hangman::Hangman()
 {
     num_parts = 0;
-    head = nullptr;
-    tail = nullptr;
+    guesses = 0;
+    buildMan();
 }
 
 Hangman::Hangman(const Hangman& h)
 {
     head = nullptr;
-    
-    if (h.head != nullptr)
-    {
-        Node* current = h.head;
-        while (current != nullptr)
-        {
-            addPart(current->part);
-            current = current->next;
-        }
-    }
+    buildMan();
 }
 
 Hangman::~Hangman()
@@ -61,6 +52,7 @@ Hangman::~Hangman()
 
 Hangman& Hangman::operator=(const Hangman& h)
 {
+    /*Deletes the current hangman*/
     Node* current = head;
     if (this != &h)
     {
@@ -72,45 +64,40 @@ Hangman& Hangman::operator=(const Hangman& h)
         }
     }
 
-    /*Finish this, not working*/
-    current = new Node(h.head->part);
+    /*Duplicates the passed hangman*/
     Node* h_current = h.head;
+    current = nullptr;
     while (h_current != nullptr)
     {
-        current->part = h_current->part;
-        current->next = new Node(h_current->part);
-        current = current->next;
+        current = new Node(h_current->part);
         h_current = h_current->next;
+
+        Node* temp = current;
+        current = current->next;
+        temp->next = current;
+        delete temp;
     }
+
+    return *this;
 }
 
-void Hangman::addPart(char part)
+/////////////
+/*Functions*/
+/////////////
+
+/*Adds the hangman's parts to the list, formatted in a manner that is easily printable*/
+void Hangman::buildMan()
 {
-    Node* newNode = new Node(part);
-    num_parts++;
-
-    switch (part)
-    {
-        case 'O':
-            head = newNode;
-            break;
-        case '|':
-            head->next = newNode;
-            break;
-        case '/':
-            head->next = newNode;
-            break;
-        case '\\':
-            Node* current = head;
-            while (current->part != '|')
-            {
-                current = current->next;
-            }
-            current->next = newNode;
-            break;
-    }
+    head = new Node('O');
+    head->next = new Node('/');
+    head->next->next = new Node('|');
+    head->next->next->next = new Node('\\');
+    head->next->next->next->next = new Node('/');
+    head->next->next->next->next->next = new Node('\\');
+    num_parts = 6;
 }
 
+/*Prints the hangman*/
 void Hangman::printHangman()
 {
     Node* current = head;
