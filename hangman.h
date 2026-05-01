@@ -2,15 +2,15 @@
 //CS202 Capstone Project
 //May 5, 2026
 
-using namespace std;
-
 #ifndef HANGMAN_H
 #define HANGMAN_H
+
+using namespace std;
 
 class Node
 {
     public:
-        Node();
+        Node(char);
         Node& operator=(const Node&n);
 
         char part;
@@ -25,11 +25,14 @@ class Hangman
         Hangman& operator=(const Hangman&h);
         ~Hangman();
 
-        void addPart();
+        void addPart(char part);
         void printHangman();
-        
-        int numParts;
+
+        int num_parts;
+    
+    private:
         Node *head;
+        Node *tail;
 };
 
 #endif
