@@ -8,6 +8,7 @@
 #include <ostream>
 #include <algorithm>
 #include <cctype>
+#include <limits>
 #include "hangman.h"
 
 using namespace std;
@@ -71,33 +72,23 @@ int main()
         }
     }
 
-    // for testing the vectors:
-    for (int i = 0; i < size; i++)
-    {
-        cout << vphrase[i];
-    }
-    cout << endl;
-    for (int i = 0; i < size; i++)
-    {
-        cout << guessing_phrase[i];
-    }
-    cout << endl;
-
     while (!game_end)
     {
         cout << "Guess a letter (type 0 - guess the phrase): ";
         // implement a throw exception if user doesn't enter a char (letter_guess data type) or 0
         cin >> letter_guess;
 
-        if (letter_guess == 48)
+        if (letter_guess == 48) // CASE MATTERS - NEED A FIX
         {
             cout << "Guess the phrase: ";
-            cin >> phrase_guess;
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            getline(cin, phrase_guess);
+
             guess_size = phrase_guess.length();
 
             for (int i = 0; i < guess_size; i++)
             {
-                guessing_phrase.push_back(tolower(phrase_guess[i]));
+                guessing_phrase[i] = phrase_guess[i];
             }
 
             if (areVectorsEqualIgnoreCase(vphrase, guessing_phrase, size))
