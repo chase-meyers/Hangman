@@ -40,6 +40,7 @@ bool isLetterFound(char letter, const vector<char> &v1, int size)
 int main()
 {
     bool game_end = false;
+    int wrong_guess = 0;
     char letter_guess;
     string phrase_guess;
     int guess_size;
@@ -47,6 +48,12 @@ int main()
     string phrase = "";
     cout << "Enter a phrase: ";
     getline(cin, phrase);
+
+    // UI to not show the user entered phrase
+    for (int i = 0; i < 50; i++)
+    {
+        cout << endl;
+    }
 
     int size = phrase.length();
 
@@ -78,6 +85,15 @@ int main()
 
     while (!game_end)
     {
+        cout << endl;
+
+        // check if user ran out of guesses
+        if (wrong_guess == 6)
+        {
+            cout << "Guessing Player lost." << endl;
+            return 0;
+        }
+
         cout << "Guess a letter (type 0 - guess the phrase): ";
         // implement a throw exception if user doesn't enter a char (letter_guess data type) or 0
         cin >> letter_guess;
@@ -121,6 +137,7 @@ int main()
         else
         {
             cout << "The guessed letter was NOT found. :(" << endl;
+            wrong_guess++;
         }
 
         if (areVectorsEqualIgnoreCase(vphrase, guessing_phrase, size))
