@@ -26,9 +26,7 @@ class Hangman
         ~Hangman();
 
         void buildMan();
-        void printHangman();
-
-        int guesses;
+        void printHangman(int wrong_guess);
 
     private:
         Node *head;

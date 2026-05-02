@@ -28,7 +28,6 @@ Node& Node::operator=(const Node& n)
 /*Hangman Constructor, Copy Constructor, Deconstructor, Assignment Operator*/
 Hangman::Hangman()
 {
-    guesses = 0;
     buildMan();
 }
 
@@ -96,24 +95,38 @@ void Hangman::buildMan()
 }
 
 /*Prints the hangman*/
-void Hangman::printHangman()
+void Hangman::printHangman(int wrong_guess)
 {
-    cout << endl;
     Node* current = head;
 
-    for (int x = 0; x < guesses; x++)
+    cout << "=========" << endl;
+    cout << "    |    " << endl;
+
+    for (int x = 0; x < wrong_guess; x++)
     {
         if (current != nullptr)
         {
-            cout << current->part;
-
-            if (current->part == 'O' || current->part == '\\')
+            if (current->part == 'O')
             {
-                cout << endl;
+                cout << "   ";
+                cout << " " << current->part << endl;
+            }
+            else if (current->part == '\\')
+            {
+                cout << current->part << endl;
+            }
+            else if (current->part == '/')
+            {
+                cout << "   " << current->part;
+            }
+            else
+            {
+                cout << current->part;
             }
 
             current = current->next;
         }
-        
     } 
+
+    cout << endl;
 }

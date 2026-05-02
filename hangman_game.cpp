@@ -91,10 +91,12 @@ int main()
         if (wrong_guess == 6)
         {
             cout << "Guessing Player lost." << endl;
+            hangman.printHangman(wrong_guess);
             return 0;
         }
 
         hangman.printHangman(wrong_guess);
+
         cout << "Guess a letter (type 0 - guess the phrase): ";
         // implement a throw exception if user doesn't enter a char (letter_guess data type) or 0
         cin >> letter_guess;
@@ -115,11 +117,13 @@ int main()
             if (areVectorsEqualIgnoreCase(vphrase, guessing_phrase, size))
             {
                 cout << "Guessing Player won! The Phrase was correctly guessed." << endl;
+                hangman.printHangman(wrong_guess);
                 return 0;
             }
             else
             {
                 cout << "Guessing Player lost. The phrase was incorrectly guessed." << endl;
+                hangman.printHangman(wrong_guess);
                 return 0;
             }
         }
@@ -144,6 +148,7 @@ int main()
         if (areVectorsEqualIgnoreCase(vphrase, guessing_phrase, size))
         {
             cout << "Guessing Player has Won!" << endl;
+            hangman.printHangman(wrong_guess);
             return 0;
         }
         for (int i = 0; i < size; i++)
