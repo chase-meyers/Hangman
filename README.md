@@ -4,8 +4,8 @@ This is the final lab for CS202: Hangman CLI - A 2-player game
 
 # How to run and play
 
-g++ hangman_game.cpp -o hangman
-./hangman
+To compile, run this command: g++ hangman.cpp hangman_game.cpp -o hangman
+To run the game, run this command: ./hangman
 
 When prompted for a phrase, type out a phrase and press enter
 
