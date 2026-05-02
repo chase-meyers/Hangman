@@ -28,11 +28,11 @@ class Hangman
         void buildMan();
         void printHangman();
 
-        int num_parts;
         int guesses;
-    
+
     private:
         Node *head;
+        
 };
 
 #endif

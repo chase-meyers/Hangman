@@ -78,6 +78,7 @@ int main()
 
     while (!game_end)
     {
+        hangman.printHangman();
         cout << "Guess a letter (type 0 - guess the phrase): ";
         // implement a throw exception if user doesn't enter a char (letter_guess data type) or 0
         cin >> letter_guess;
@@ -121,6 +122,7 @@ int main()
         else
         {
             cout << "The guessed letter was NOT found. :(" << endl;
+            hangman.guesses++;
         }
 
         if (areVectorsEqualIgnoreCase(vphrase, guessing_phrase, size))
