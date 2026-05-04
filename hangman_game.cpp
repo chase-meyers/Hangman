@@ -85,7 +85,6 @@ int main()
 
     while (!game_end)
     {
-        cout << endl;
 
         // check if user ran out of guesses
         if (wrong_guess == 6)
@@ -97,17 +96,29 @@ int main()
 
         hangman.printHangman(wrong_guess);
 
-        cout << "Guess a letter (type 0 - guess the phrase): ";
+        cout << "Guess a letter (type '0' if you want to guess the entire phrase): ";
         // implement a throw exception if user doesn't enter a char (letter_guess data type) or 0
         cin >> letter_guess;
 
-        if (letter_guess == 48) // CASE MATTERS - NEED A FIX
+        // Clears screen for readability
+        for (int i = 0; i < 50; i++)
         {
+            cout << endl;
+        }
+
+        if (letter_guess == '0') // CASE MATTERS - NEED A FIX
+        {
+            hangman.printHangman(wrong_guess);
             cout << "Guess the phrase: ";
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
             getline(cin, phrase_guess);
 
             guess_size = phrase_guess.length();
+
+            for (int i = 0; i < 50; i++)
+            {
+                cout << endl;
+            }
 
             for (int i = 0; i < guess_size; i++)
             {
@@ -116,7 +127,7 @@ int main()
 
             if (areVectorsEqualIgnoreCase(vphrase, guessing_phrase, size))
             {
-                cout << "Guessing Player won! The Phrase was correctly guessed." << endl;
+                cout << "Guessing Player won! The phrase was correctly guessed." << endl;
                 hangman.printHangman(wrong_guess);
                 return 0;
             }
@@ -130,7 +141,7 @@ int main()
 
         if (isLetterFound(letter_guess, vphrase, size)) // if guess letter is found
         {
-            cout << "The guessed letter was found! :)" << endl;
+            cout << "The guessed letter was found! :)" << endl << endl;
             for (int i = 0; i < size; i++)
             {
                 if (tolower(vphrase[i]) == tolower(letter_guess))
@@ -141,7 +152,7 @@ int main()
         }
         else
         {
-            cout << "The guessed letter was NOT found. :(" << endl;
+            cout << "The guessed letter was NOT found. :(" << endl << endl;
             wrong_guess++;
         }
 
@@ -155,7 +166,8 @@ int main()
         {
             cout << guessing_phrase[i];
         }
-        cout << endl;
+
+        cout << endl << endl;
     }
 
     return 0;

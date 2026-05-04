@@ -128,5 +128,5 @@ void Hangman::printHangman(int wrong_guess)
         }
     } 
 
-    cout << endl;
+    cout << endl << endl;
 }
