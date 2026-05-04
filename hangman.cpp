@@ -62,7 +62,7 @@ Hangman& Hangman::operator=(const Hangman& h)
         }
     }
 
-    /*Duplicates the passed hangman*/
+    /*Duplicates the passed hangman in correct order*/
     Node* h_current = h.head;
     current = nullptr;
     while (h_current != nullptr)
@@ -86,6 +86,8 @@ Hangman& Hangman::operator=(const Hangman& h)
 /*Adds the hangman's parts to the list, formatted in a manner that is easily printable*/
 void Hangman::buildMan()
 {
+    /*Attempted to have the parts added each time a wrong guess is made but it resulted in a 
+    long switch statement and complicated if statements*/
     head = new Node('O');
     head->next = new Node('/');
     head->next->next = new Node('|');
@@ -104,6 +106,7 @@ void Hangman::printHangman(int wrong_guess)
 
     for (int x = 0; x < wrong_guess; x++)
     {
+        /*Prints specific spacing depending on the current character being printed*/
         if (current != nullptr)
         {
             if (current->part == 'O')

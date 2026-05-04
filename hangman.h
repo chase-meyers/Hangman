@@ -30,7 +30,6 @@ class Hangman
 
     private:
         Node *head;
-        
 };
 
 #endif

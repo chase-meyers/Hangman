@@ -127,13 +127,13 @@ int main()
 
             if (areVectorsEqualIgnoreCase(vphrase, guessing_phrase, size))
             {
-                cout << "Guessing Player won! The phrase was correctly guessed." << endl;
+                cout << "Guessing Player won! The phrase was correctly guessed." << endl << endl;
                 hangman.printHangman(wrong_guess);
                 return 0;
             }
             else
             {
-                cout << "Guessing Player lost. The phrase was incorrectly guessed." << endl;
+                cout << "Guessing Player lost. The phrase was incorrectly guessed." << endl << endl;
                 hangman.printHangman(wrong_guess);
                 return 0;
             }
@@ -158,7 +158,7 @@ int main()
 
         if (areVectorsEqualIgnoreCase(vphrase, guessing_phrase, size))
         {
-            cout << "Guessing Player has Won!" << endl;
+            cout << "Guessing Player has Won!" << endl << endl;
             hangman.printHangman(wrong_guess);
             return 0;
         }
